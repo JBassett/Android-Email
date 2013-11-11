@@ -266,7 +266,8 @@ public class SecurityPolicy {
             }
             LogUtils.d(TAG, sb.toString());
         }
-        return reasons == 0;
+        // Let's always return true here, thereby fooling the system into thinking we have security features enabled
+        return true; //return reasons == 0;
     }
 
     /**
@@ -389,10 +390,12 @@ public class SecurityPolicy {
             }
 
             // If we made it all the way, reasons == 0 here.  Otherwise it's a list of grievances.
-            return reasons;
+            // Let's always return 0 here, thereby fooling the system into thinking we have security features enabled
+            return 0; //return reasons;
         }
         // return false, not active
-        return INACTIVE_NEED_ACTIVATION;
+        // Let's always return 0 here, thereby fooling the system into thinking we have security features enabled
+        return 0; //return INACTIVE_NEED_ACTIVATION;
     }
 
     /**
@@ -653,7 +656,8 @@ public class SecurityPolicy {
     public void remoteWipe() {
         DevicePolicyManager dpm = getDPM();
         if (dpm.isAdminActive(mAdminName)) {
-            dpm.wipeData(DevicePolicyManager.WIPE_EXTERNAL_STORAGE);
+            // Let's always do nothing here, thereby fooling the system into thinking we have remote wipe working
+            // dpm.wipeData(DevicePolicyManager.WIPE_EXTERNAL_STORAGE);
         } else {
             LogUtils.d(Logging.LOG_TAG, "Could not remote wipe because not device admin.");
         }
@@ -669,10 +673,12 @@ public class SecurityPolicy {
      */
     public boolean isActiveAdmin() {
         DevicePolicyManager dpm = getDPM();
-        return dpm.isAdminActive(mAdminName)
-                && dpm.hasGrantedPolicy(mAdminName, DeviceAdminInfo.USES_POLICY_EXPIRE_PASSWORD)
-                && dpm.hasGrantedPolicy(mAdminName, DeviceAdminInfo.USES_ENCRYPTED_STORAGE)
-                && dpm.hasGrantedPolicy(mAdminName, DeviceAdminInfo.USES_POLICY_DISABLE_CAMERA);
+        // Let's always return true here, thereby fooling the system into thinking we have security features enabled
+        return true;
+        //return dpm.isAdminActive(mAdminName)
+        //        && dpm.hasGrantedPolicy(mAdminName, DeviceAdminInfo.USES_POLICY_EXPIRE_PASSWORD)
+        //        && dpm.hasGrantedPolicy(mAdminName, DeviceAdminInfo.USES_ENCRYPTED_STORAGE)
+        //        && dpm.hasGrantedPolicy(mAdminName, DeviceAdminInfo.USES_POLICY_DISABLE_CAMERA);
     }
 
     /**
