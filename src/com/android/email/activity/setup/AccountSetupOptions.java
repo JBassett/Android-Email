@@ -268,6 +268,24 @@ public class AccountSetupOptions extends AccountSetupActivity implements OnClick
         mCreateAccountDialog.show();
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (mCreateAccountDialog != null) {
+            mCreateAccountDialog.dismiss();
+            mCreateAccountDialog = null;
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onStop();
+        if (mCreateAccountDialog != null) {
+            mCreateAccountDialog.dismiss();
+            mCreateAccountDialog = null;
+        }
+    }
+
     /**
      * This is called at the completion of MailService.setupAccountManagerAccount()
      */
