@@ -417,6 +417,8 @@ public class SecurityPolicy {
             if (MailActivityEmail.DEBUG) {
                 LogUtils.d(TAG, "setActivePolicies: " + aggregatePolicy);
             }
+            //Skip setting up DPM since we are not really creating one!!
+            /*
             // set each policy in the policy manager
             // password mode & length
             dpm.setPasswordQuality(mAdminName, aggregatePolicy.getDPManagerPasswordQuality());
@@ -443,6 +445,7 @@ public class SecurityPolicy {
 
             // encryption required
             dpm.setStorageEncryption(mAdminName, aggregatePolicy.mRequireEncryption);
+            */
         }
     }
 
